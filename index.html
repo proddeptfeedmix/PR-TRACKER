@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PR Tracker — Purchase Requisition Tracking</title>
+<meta name="description" content="Track purchase requisitions across plants — status, items, approvals, and exports." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div id="toast-host"></div>
+
+<!-- ===================== LOGIN ===================== -->
+<div id="login-view" class="login-shell">
+  <div class="login-card">
+    <div class="login-mark" id="login-logo-mark">PR</div>
+    <h1 id="login-company-name">PR Tracker</h1>
+    <p class="sub">Sign in to view and manage purchase requisitions.</p>
+
+    <form id="login-form" autocomplete="off">
+      <div class="field" id="field-username">
+        <label for="login-username">Username</label>
+        <input id="login-username" name="username" type="text" placeholder="e.g. plant4" autocomplete="username" />
+        <div class="field-error">Enter a username.</div>
+      </div>
+      <div class="field" id="field-password">
+        <label for="login-password">Password</label>
+        <input id="login-password" name="password" type="password" placeholder="••••••••" autocomplete="current-password" />
+        <div class="field-error">Enter a password.</div>
+      </div>
+      <div class="field" id="field-login-error" style="display:none;">
+        <div class="field-error" style="display:block;" id="login-error-text">Incorrect username or password.</div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+    </form>
+
+    <div class="login-demo">
+      Demo accounts — Administrator: <code>admin / admin</code><br/>
+      Plants: <code>plant1</code>–<code>plant4</code>, password matches username.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== APP ===================== -->
+<div id="app-view" class="hidden">
+  <header class="topbar">
+    <div class="brand">
+      <div class="login-mark" id="topbar-logo-mark">PR</div>
+      <div>
+        <div class="brand-name" id="topbar-company-name">PR Tracker</div>
+        <div class="brand-sub">Purchase Requisition Tracking</div>
+      </div>
+    </div>
+    <nav class="tabs" id="nav-tabs">
+      <button class="tab-btn" data-view="dashboard">Dashboard</button>
+      <button class="tab-btn" data-view="list">Requisitions</button>
+      <button class="tab-btn" data-view="reports">Reports &amp; Export</button>
+      <button class="tab-btn" data-view="settings">Settings</button>
+    </nav>
+    <div class="topbar-right">
+      <button class="icon-btn" id="theme-toggle-btn" title="Toggle light / dark mode" aria-label="Toggle theme">
+        <svg id="theme-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+      </button>
+      <div class="user-chip">
+        <span class="role-dot"></span>
+        <span id="user-chip-label">—</span>
+      </div>
+      <button class="icon-btn" id="logout-btn" title="Sign out" aria-label="Sign out">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="view-wrap">
+    <section id="view-dashboard"></section>
+    <section id="view-list" class="hidden"></section>
+    <section id="view-reports" class="hidden"></section>
+    <section id="view-settings" class="hidden"></section>
+  </main>
+</div>
+
+<div id="modal-root"></div>
+
+<script src="js/constants.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/seed.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/prlist.js"></script>
+<script src="js/prmodal.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/settingsview.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
