@@ -17,10 +17,11 @@
    ============================================================ */
 
 window.FIREBASE_CONFIG = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAKaXhK7KN_AgRSxgBniZdN-gP3U673bE4",
+  authDomain: "prtracker-3267a.firebaseapp.com",
+  projectId: "prtracker-3267a",
+  storageBucket: "prtracker-3267a.firebasestorage.app",
+  messagingSenderId: "887146919939",
+  appId: "1:887146919939:web:36850f622af65f23d5b636",
+  measurementId: "G-17D6D6ZC1Q"
 };
