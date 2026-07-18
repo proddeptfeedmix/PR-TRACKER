@@ -55,7 +55,9 @@ const App = {
     dashboardPlantFilter: ''
   },
 
-  init() {
+  async init() {
+    this.showLoading();
+    await Store.init(); // waits for Firestore's first snapshot (or localStorage) before touching data
     Seed.run();
     const settings = Data.getSettings();
     this.applyTheme(settings.theme || 'dark');
@@ -63,11 +65,30 @@ const App = {
     this.wireTopbar();
     window.addEventListener('hashchange', () => this.handleHash());
 
+    Store.onRemoteChange(() => {
+      // Data changed from another device/tab. Don't yank the UI out from
+      // under someone mid-edit — only refresh if no modal is open.
+      const modalOpen = document.getElementById('modal-root').children.length > 0;
+      if (!modalOpen) this.refreshCurrentView();
+    });
+
+    this.hideLoading();
     if (Auth.currentUser()) {
       this.showApp();
     } else {
       this.showLogin();
     }
+  },
+
+  // ---------- Loading screen (shown while Firestore/local data loads) ----------
+  showLoading() {
+    const el = document.getElementById('loading-view');
+    if (el) el.classList.remove('hidden');
+  },
+
+  hideLoading() {
+    const el = document.getElementById('loading-view');
+    if (el) el.classList.add('hidden');
   },
 
   // ---------- Login / App visibility ----------
